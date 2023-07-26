@@ -25,9 +25,9 @@
                 {
                         if($_POST["password"]==$_POST["c-password"])
                         {
-                            $u_email=$_POST["email"];
-                            $u_name=$_POST["fullname"];
-                            $u_password=$_POST["password"];
+                            $u_email=mysqli_real_escape_string($conn,$_POST["email"]);
+                            $u_name=mysqli_real_escape_string($conn,$_POST["fullname"]);
+                            $u_password=mysqli_real_escape_string($conn,$_POST["password"]);
                             $hashed_password=password_hash($u_password, PASSWORD_DEFAULT);
                             if(strlen($u_password)>=8 && strlen($u_password)<=10 ){
                                 $query="INSERT INTO User (Name, password, Email)

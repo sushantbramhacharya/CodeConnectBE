@@ -23,8 +23,8 @@
                     require_once("../db_connect.php");
                     if(isset($_POST ['email'])&& isset($_POST['password']))
                     {
-                        $email=$_POST['email'];
-                        $password=$_POST['password'];
+                        $email=mysqli_real_escape_string($conn,$_POST['email']);
+                        $password=mysqli_real_escape_string($conn,$_POST['password']);
                         $sql = "SELECT * FROM User Where Email='$email';";
                             $result=mysqli_query($conn,$sql);
                             if($user=mysqli_fetch_assoc($result))
