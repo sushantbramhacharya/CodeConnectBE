@@ -16,8 +16,33 @@
             <p id="typing-animation" class="code" ></p>
         </div>
         <div class="right">
-            <form class="login-form" action="">
+            <form class="login-form" action="index.php">
                 <img class="logo mbl-logo" src="../img/logo.png" alt="logo">
+                <?php
+                    require_once("../db_connect.php");
+                    if(isset($_POST))
+                    {
+                        $email=$_POST['email'];
+                        $password=$_POST['password'];
+                        $sql = "SELECT * FROM User Where Email='$email';";
+                            $result=mysqli_query($conn,$sql);
+                            if($user=mysqli_fetch_assoc($result))
+                            {
+                                if($user['password']==$password)
+                                {
+                                    echo "Success";
+                                }
+                                else
+                                {
+                                    echo "Wrong Password";
+                                }
+                            }
+                            else{
+                                echo "No User";
+                            }
+                    }
+
+                ?>
                 <label for="email">Email</label>
                 <input class="inputs" type="email" name="email" placeholder="Enter Your Email" id="email">
                 <label for="password">
