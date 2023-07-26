@@ -19,6 +19,7 @@
             <form class="login-form" action="index.php" method="POST">
                 <img class="logo mbl-logo" src="../img/logo.png" alt="logo">
                 <?php
+                 require_once("../session_auth.php");
                  require_once("../db_connect.php");
                 if(isset($_POST["email"])&&isset($_POST["password"]))
                 {
@@ -29,9 +30,22 @@
                             $u_password=$_POST["password"];
                             if(strlen($u_password)>=8 && strlen($u_password)<=10 ){
                                 $query="INSERT INTO User (Name, password, Email)
-                            VALUES('$u_name', '$u_password', '$u_email');";
-                            mysqli_query($conn,$query);
-                            header("Location: ../login"); 
+                                VALUES('$u_name', '$u_password', '$u_email');";
+                                try {
+                                    if (mysqli_query($conn, $query)) {
+                                        header("Location: ../login");
+                                    } else {
+                                        echo "Error: " . mysqli_error($conn);
+                                    }
+                                } catch (mysqli_sql_exception $e) {
+
+                                    if ($e->getCode() === 1062) { 
+                                        echo "<p style='color:red;'>Error: This email already exists. </p>";
+                                    } else {
+                                        echo "Error: " . $e->getMessage();
+                                    }
+                                }
+                            
                             }else{
                                 echo "<p style='color:red;'>MINIMUN REQUIRED 8 CHARACTERS</p>";
                             }
@@ -75,7 +89,7 @@
                     </svg>
                 </div><br>
                 <button class="login" name="login">Login Now</button> <br>
-                <button class="login-social login" name="login-social"><svg xmlns="http://www.w3.org/2000/svg"
+                <!-- <button class="login-social login" name="login-social"><svg xmlns="http://www.w3.org/2000/svg"
                         width="20" height="21" viewBox="0 0 20 21" fill="none">
                         <path
                             d="M19.805 10.7305C19.805 10.0507 19.7499 9.36724 19.6323 8.69849H10.2V12.5493H15.6014C15.3773 13.7913 14.6571 14.8899 13.6025 15.5881V18.0867H16.825C18.7173 16.345 19.805 13.7729 19.805 10.7305Z"
@@ -89,8 +103,9 @@
                         <path
                             d="M10.1999 4.45805C11.6256 4.436 13.0035 4.97247 14.036 5.95722L16.8911 3.10218C15.0833 1.40459 12.6838 0.471278 10.1999 0.500674C6.41892 0.500674 2.96127 2.63185 1.26367 6.01234L4.58537 8.58813C5.37538 6.21811 7.59107 4.45805 10.1999 4.45805Z"
                             fill="#EA4335" />
-                    </svg> Login Now</button> <br>
-                <p class="sign-up">Don't have an account ? <a class="link" href="">Sign Up</a> </p>
+                    </svg> Login Now</button> -->
+                    <br> 
+                <p class="sign-up">Have an account ? <a class="link" href="../login">Sign In</a> </p>
             </form>
         </div>
     </div>
