@@ -66,7 +66,7 @@ require_once("home.php");
         <div class="sidebar">
           <img src="../img/guni.png" alt="guni">
           <div class="inner-sidebar">
-              <h1 class="center">Mandal</h1>
+              <h1 class="center"><?php echo $user['Name']?></h1>
               <p class="center">HTML is my pro language</p>
               <hr>
               <h2 class="center">Connections</h2>
