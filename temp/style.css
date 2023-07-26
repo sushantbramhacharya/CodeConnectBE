@@ -1,0 +1,97 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Poppins:ital,wght@1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+.message-profile{
+    border-radius: 10px;
+    border: 1px solid rgba(173, 173, 173, 0.42);
+    background: #FFF;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 40px;
+}
+.message-profile div{
+    gap: 20px;
+    display: flex;
+}
+.message-profile div p{
+    color: #000;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.message-profile img{
+border-radius: 53px;
+width: 60px;
+height: auto;
+}
+
+.messages{
+    border-radius: 10px;
+    border: 1px solid rgba(173, 173, 173, 0.42);
+    background: #FFF;
+    height: 70vh;
+    margin-top: 12px;
+    padding: 10px 40px;
+}
+
+.message{
+   display: flex;
+   margin-bottom: 10px;
+   gap: 20px;
+}
+
+.message span{
+    color: #787878;
+    font-family: Poppins;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: normal;
+}
+
+.messager-user-name{
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
+    margin: 0;
+}
+.message img{
+    width: auto;
+    height: 60px;
+}
+
+.message-text p{
+    color: #000;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: 12px;
+    font-weight: 300;
+    line-height: normal;
+    margin: 5px 0;
+    margin: 0;
+}
+
+.enter-message {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 10px ; 
+    border-radius: 10px;
+    border: 1px solid rgba(173, 173, 173, 0.42);
+    background: #FFF;
+    
+    margin: 10px 0px;
+  }
+  .enter-message svg{
+    width: 25px;
+    height: auto;
+  }
+.message-input{
+    width: 100%;
+    border: none;
+    outline: none;
+}
