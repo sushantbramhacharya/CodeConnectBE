@@ -29,7 +29,7 @@
                             $result=mysqli_query($conn,$sql);
                             if($user=mysqli_fetch_assoc($result))
                             {
-                                if($user['password']==$password)
+                                if(password_verify($password,$user['password']))
                                 {
                                     session_start();
                                     $_SESSION["uid"]=$user['uid'];
