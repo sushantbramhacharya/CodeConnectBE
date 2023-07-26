@@ -19,37 +19,52 @@
             <form class="login-form" action="index.php" method="POST">
                 <img class="logo mbl-logo" src="../img/logo.png" alt="logo">
                 <?php
-                    require_once("../db_connect.php");
-                    if(isset($_POST ['email'])&& isset($_POST['password']))
-                    {
-                        $email=$_POST['email'];
-                        $password=$_POST['password'];
-                        $sql = "SELECT * FROM User Where Email='$email';";
-                            $result=mysqli_query($conn,$sql);
-                            if($user=mysqli_fetch_assoc($result))
-                            {
-                                if($user['password']==$password)
-                                {
-                                    echo "Success";
-                                }
-                                else
-                                {
-                                    echo "Wrong Password";
-                                }
-                            }
-                            else{
-                                echo "No User";
+                 require_once("../db_connect.php");
+                if(isset($_POST["email"])&&isset($_POST["password"]))
+                {
+                        if($_POST["password"]==$_POST["c-password"])
+                        {
+                            $u_email=$_POST["email"];
+                            $u_name=$_POST["fullname"];
+                            $u_password=$_POST["password"];
+                            if(strlen($u_password)>=8 && strlen($u_password)<=10 ){
+                                $query="INSERT INTO User (Name, password, Email)
+                            VALUES('$u_name', '$u_password', '$u_email');";
+                            mysqli_query($conn,$query);
+                            header("Location: ../login"); 
+                            }else{
+                                echo "<p style='color:red;'>MINIMUN REQUIRED 8 CHARACTERS</p>";
                             }
                     }
+                    else{
+                        echo "<p style='color:red;'>ENTER SAME PASSWORD</p>";
+                    }
+                }
 
                 ?>
+                 <label for="fullname">Full Name</label>
+                <input class="inputs" type="text" name="fullname" placeholder="Enter Your Full Name" id="fullname">
                 <label for="email">Email</label>
                 <input class="inputs" type="email" name="email" placeholder="Enter Your Email" id="email">
                 <label for="password">
-                    Password <a class="link" href="">Forgot?</a>
+                    Password 
                 </label>
                 <div class="inputs">
                     <input type="password" name="password" placeholder="Enter Your Password" id="password"><svg
+                        xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+                        <path
+                            d="M12 5.75C4.5 5.75 1.5 12.5 1.5 12.5C1.5 12.5 4.5 19.25 12 19.25C19.5 19.25 22.5 12.5 22.5 12.5C22.5 12.5 19.5 5.75 12 5.75Z"
+                            stroke="#BEBEBF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                        <path
+                            d="M12 16.25C14.0711 16.25 15.75 14.5711 15.75 12.5C15.75 10.4289 14.0711 8.75 12 8.75C9.92893 8.75 8.25 10.4289 8.25 12.5C8.25 14.5711 9.92893 16.25 12 16.25Z"
+                            stroke="#BEBEBF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <label for="password">
+                    Confirm Password 
+                </label>
+                <div class="inputs">
+                    <input type="password" name="c-password" placeholder="Enter Your Password Again" id="c-password"><svg
                         xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
                         <path
                             d="M12 5.75C4.5 5.75 1.5 12.5 1.5 12.5C1.5 12.5 4.5 19.25 12 19.25C19.5 19.25 22.5 12.5 22.5 12.5C22.5 12.5 19.5 5.75 12 5.75Z"
