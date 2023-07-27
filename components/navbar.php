@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../components/navbar.css">
 <nav>
     <div class="navbar">
       <div class="left-section-nav">
@@ -43,7 +44,10 @@
 
 
 
-        <li><a href="../notifications"><svg class="icon" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52"
+        <li>
+        <div class="notification-container">
+          <button id="notification-btn">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 52 52"
               fill="none">
               <path
                 d="M42.4299 17.9281C37.4817 17.9281 33.4658 13.9122 33.4658 8.96406C33.4658 4.0159 37.4817 0 42.4299 0C47.378 0 51.3939 4.0159 51.3939 8.96406C51.3939 13.9122 47.378 17.9281 42.4299 17.9281ZM42.4299 3.58562C39.4658 3.58562 37.0514 5.99994 37.0514 8.96406C37.0514 11.9282 39.4658 14.3425 42.4299 14.3425C45.394 14.3425 47.8083 11.9282 47.8083 8.96406C47.8083 5.99994 45.394 3.58562 42.4299 3.58562Z"
@@ -57,7 +61,16 @@
               <path
                 d="M32.8682 51.3939H18.5257C5.54577 51.3939 0 45.8482 0 32.8682V18.5257C0 5.54577 5.54577 0 18.5257 0H30.4778C31.4579 0 32.2706 0.812741 32.2706 1.79281C32.2706 2.77288 31.4579 3.58562 30.4778 3.58562H18.5257C7.50591 3.58562 3.58562 7.50591 3.58562 18.5257V32.8682C3.58562 43.888 7.50591 47.8083 18.5257 47.8083H32.8682C43.888 47.8083 47.8083 43.888 47.8083 32.8682V20.9161C47.8083 19.9361 48.6211 19.1233 49.6011 19.1233C50.5812 19.1233 51.3939 19.9361 51.3939 20.9161V32.8682C51.3939 45.8482 45.8482 51.3939 32.8682 51.3939Z"
                 fill="white" />
-            </svg></a></li>
+            </svg>
+          </button>
+          <div id="notification-dropdown" class="notification-dropdown">
+            <!-- Your notifications will be dynamically added here -->
+          </div>
+        </div>
+
+          <!-- <a href="../notifications">
+        </a> -->
+      </li>
 
 
 
@@ -77,3 +90,4 @@
       </ul>
     </div>
   </nav>
+  <script src="../components/navbar.js"></script>
