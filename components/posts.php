@@ -20,7 +20,23 @@ if ($result == true) {
 ?>
 
 <div class="posts">
-    <h2>Posts</h2>
+    <div class="post-header"> <h1>Posts</h1> <button id="postBtn">Post</button> </div>
+    <div id="postPopup">
+    <div class="popupContent">
+      <h3 style="background-color: #232F66; 
+                  margin:5px;
+                  padding:20px;
+                  border-radius:10px;
+                  box-sizing: border-box;
+                  color:white;
+                  font-family: Poppins;
+                  ">Create a Post</h3>
+      <textarea id="postContent" name="description" placeholder="Write your post here..."></textarea>
+      <textarea id="postContent" name="code" placeholder="Write your code here if you want..."></textarea>
+      <button id="submitPostBtn">Submit</button>
+      <button id="cancelPostBtn">Cancel</button>
+    </div>
+  </div>
     <div class="post-content">
         <div class="newsfeed">
             <?php
@@ -58,11 +74,11 @@ if ($result == true) {
               <p class="post-description">
               <?php echo $post_description?>
               </p>
-
+              <?php if($post_code){?>
               <p class="code">
                <?php echo $post_code?>
               </p>
-
+              <?php };?>
             </div>
             <hr>
             <div class="post-footer">
@@ -107,3 +123,4 @@ if ($result == true) {
         </div>
     </div>
 </div>
+<script src="../components/posts.js"></script>
