@@ -1,11 +1,22 @@
 <?php
+if(isset($_POST["description"]))
+{
+  $uid=$_SESSION["uid"];
+  $description=$_POST["description"];
+  $post_code_send=$_POST["code"];
+
+  $post_query = "INSERT INTO discussion (uid,post_description,code_text)
+  VALUES ($uid, '$description', '$post_code_send');";
+  mysqli_query($conn, $post_query);
+  exit(header("Location: ../home"));
+}
 $sid=$_SESSION["uid"];
 $query = "SELECT Name FROM User Where uid ='$sid';";
 $result=mysqli_query($conn,$query);
 $user=mysqli_fetch_assoc($result);
 //Query Posts
 $sid = $_SESSION["uid"];
-$query = "SELECT * FROM discussion Where uid ='$sid';";
+$query = "SELECT * FROM discussion Where uid ='$sid' ORDER BY posted_date DESC;";
 $result = mysqli_query($conn, $query);
 $posts = array();
 if ($result == true) {
@@ -28,21 +39,6 @@ if ($result == true) {
     <form action="index.php" method="post">
     <div id="postPopup">
     <div class="popupContent">
-    <?php
-      require_once("../db_connect.php");
-      if($_SERVER['REQUEST_METHOD'] === 'POST')
-      {
-        $uid=$_SESSION["uid"];
-        $description=$_POST["description"];
-        $post_code=$_POST["code"];
-
-  
-        $query = "INSERT INTO discussion (uid,post_description, code_text)
-        VALUES ($uid, $description, $post_code);";
-      }
-   
-
-      ?>
       <h3 style="background-color: #232F66; 
                   margin:5px;
                   padding:20px;
@@ -65,7 +61,7 @@ if ($result == true) {
                 $post_description = $row['post_description'];
                 $post_code = $row['code_text'];
                 $time_stamp=$row['posted_date'];
-?>
+            ?>
         <div class="post">
             <div class="post-header">
               <div class="profile-section">

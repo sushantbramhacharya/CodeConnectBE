@@ -1,4 +1,5 @@
 <?php
+ob_start();
 session_start();
 if(!isset($_SESSION["uid"]))
 {
@@ -7,6 +8,7 @@ if(!isset($_SESSION["uid"]))
 }
 
 require_once("../db_connect.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,3 +35,4 @@ require_once("../db_connect.php");
 </body>
 
 </html>
+<?php ob_end_flush();?>
