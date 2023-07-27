@@ -25,7 +25,7 @@ require_once("../db_connect.php");
   <div class="container">
     <?php
     require_once("../components/sidebar.php");
-    require_once("../components/posts.php");
+    require_once("notifications.php");
     require_once("../components/additional_section.php");
     ?>
     </div>
