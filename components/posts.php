@@ -17,12 +17,32 @@ if ($result == true) {
     echo "Something went wrong!<BR>";
 }
 
+
+/*query of posting discussions*/
+
+
 ?>
 
 <div class="posts">
     <div class="post-header"> <h1>Posts</h1> <button id="postBtn">Post</button> </div>
+    <form action="index.php" method="post">
     <div id="postPopup">
     <div class="popupContent">
+    <?php
+      require_once("../db_connect.php");
+      if($_SERVER['REQUEST_METHOD'] === 'POST')
+      {
+        $uid=$_SESSION["uid"];
+        $description=$_POST["description"];
+        $post_code=$_POST["code"];
+
+  
+        $query = "INSERT INTO discussion (uid,post_description, code_text)
+        VALUES ($uid, $description, $post_code);";
+      }
+   
+
+      ?>
       <h3 style="background-color: #232F66; 
                   margin:5px;
                   padding:20px;
@@ -33,10 +53,11 @@ if ($result == true) {
                   ">Create a Post</h3>
       <textarea id="postContent" name="description" placeholder="Write your post here..."></textarea>
       <textarea id="postContent" name="code" placeholder="Write your code here if you want..."></textarea>
-      <button id="submitPostBtn">Submit</button>
+      <button id="submitPostBtn" type="submit" >Submit</button>
       <button id="cancelPostBtn">Cancel</button>
     </div>
   </div>
+  </form>
     <div class="post-content">
         <div class="newsfeed">
             <?php
