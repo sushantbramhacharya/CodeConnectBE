@@ -16,7 +16,7 @@ $result=mysqli_query($conn,$query);
 $user=mysqli_fetch_assoc($result);
 //Query Posts
 $sid = $_SESSION["uid"];
-$query = "SELECT * FROM discussion Where uid ='$sid' ORDER BY posted_date DESC;";
+$query = "SELECT * FROM discussion ORDER BY posted_date DESC;";
 $result = mysqli_query($conn, $query);
 $posts = array();
 if ($result == true) {
@@ -57,10 +57,15 @@ if ($result == true) {
     <div class="post-content">
         <div class="newsfeed">
             <?php
-            foreach ($posts as $row) {
-                $post_description = $row['post_description'];
-                $post_code = $row['code_text'];
-                $time_stamp=$row['posted_date'];
+            foreach ($posts as $post) {
+                $post_description = $post['post_description'];
+                $post_code = $post['code_text'];
+                $time_stamp=$post['posted_date'];
+                $poster_uid=$post['uid'];
+
+                $query="SELECT Name FROM user WHERE uid = '$poster_uid';";
+                $result_name= mysqli_query($conn,$query);
+                $poster_name = $result_name->fetch_assoc(); 
             ?>
         <div class="post">
             <div class="post-header">
@@ -70,13 +75,49 @@ if ($result == true) {
                 </a>
                 <div class="profile-info-posts">
                   <a href="">
-                    <h3><?php echo $user["Name"];?></h3>
+                    <h3><?php echo $poster_name['Name'];?></h3>
                   </a>
                   <p>Loves Lolipop</p>
                   <p><?php echo $time_stamp; ?></p>
                 </div>
 
               </div>
+              <script>
+                $.ajax({
+                url: "../components/post_scripts/geek.php",
+                method: "POST", // Or "GET" depending on your needs
+                data: {
+                  discussion_id:<?php echo $post['discussion_id']?>,
+                  geeking:"false"
+                }, // You can pass data to the PHP script here if needed
+                success: function(response) {
+                  // Handle the response from the PHP script here (if required)
+                  console.log(response);
+                  const data = JSON.parse(response);
+                  data.map((geeker,index)=>{
+                        if(geeker.Name)
+                        {
+                          if(index<data.length-2)
+                          {
+                            document.getElementById("<?php echo $post['discussion_id']?>").innerHTML+=" "+geeker.Name+",";
+                          }else{
+                            document.getElementById("<?php echo $post['discussion_id']?>").innerHTML+=" "+geeker.Name;
+                          }
+                        }
+                        else if(parseInt(geeker.count)>0){
+                          document.getElementById("<?php echo $post['discussion_id']?>").innerHTML+=" and "+geeker.count+" Others";
+                        }
+                  })
+                  
+                  ;
+                },
+                error: function(xhr, status, error) {
+                  // Handle errors, if any
+                  console.error(error);
+                }
+                });
+                </script>
+
               <a class="saved-posts" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="25"
                   viewBox="0 0 17 25" fill="none">
                   <path
@@ -97,9 +138,10 @@ if ($result == true) {
               </p>
               <?php };?>
             </div>
+            <p class="geeked" id="<?php echo $post['discussion_id']?>">Geeked By</p>
             <hr>
             <div class="post-footer">
-              <a href="#" id="geek"> <img src="../img/geek.png" alt="geek"> Geek</a>
+              <a href="#" onclick="makeGeekAjaxRequest(event,<?php echo $sid;?>,<?php echo $post['discussion_id'];?>)"> <img src="../img/geek.png" alt="geek"> Geek</a>
               <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="41" height="35" viewBox="0 0 41 35"
                   fill="none">
                   <path

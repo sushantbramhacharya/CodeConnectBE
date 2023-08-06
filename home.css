@@ -319,6 +319,13 @@ line-height: normal;
   height: 30px;
 }
 
+.geeked{
+  font-family: Inter;
+  font-size: 12px;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
 .code{
     border-radius: 10px;
     border: 1px solid rgba(173, 173, 173, 0.42);
