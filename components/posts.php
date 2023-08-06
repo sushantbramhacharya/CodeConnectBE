@@ -33,7 +33,7 @@ if ($result == true) {
 
 
 ?>
-
+<script src="../components/post_scripts/geek.js"></script>
 <div class="posts">
     <div class="post-header"> <h1>Posts</h1> <button id="postBtn">Post</button> </div>
     <form action="index.php" method="post">
@@ -88,7 +88,7 @@ if ($result == true) {
                 </svg></a>
             </div>
             <div class="post-content">
-              <p class="post-description">
+              <p class="post-description" id="test">
               <?php echo $post_description?>
               </p>
               <?php if($post_code){?>
@@ -99,7 +99,7 @@ if ($result == true) {
             </div>
             <hr>
             <div class="post-footer">
-              <a href="#"> <img src="../img/geek.png" alt="geek"> Geek</a>
+              <a href="#" id="geek"> <img src="../img/geek.png" alt="geek"> Geek</a>
               <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="41" height="35" viewBox="0 0 41 35"
                   fill="none">
                   <path
@@ -109,7 +109,7 @@ if ($result == true) {
                     d="M6.2576 34.6183C5.76754 34.6183 5.29634 34.5055 4.86283 34.2639C4.01466 33.7967 3.56232 32.9913 3.67541 32.1375L4.05236 29.6567C1.50785 27.8847 0 25.2589 0 22.5043C0 19.363 1.92253 16.4312 5.14557 14.6753C7.08693 13.596 9.38639 13.0161 11.7801 13.0161C18.2828 13.0161 23.5603 17.2688 23.5603 22.5043C23.5603 24.6307 22.6556 26.7249 20.9969 28.3841C18.8671 30.591 15.6817 31.8797 12.1759 31.9764L7.57697 34.3122C7.16231 34.5216 6.70995 34.6183 6.2576 34.6183ZM11.7613 15.4324C9.91414 15.4324 8.1424 15.8674 6.65339 16.705C4.24082 18.026 2.80838 20.1846 2.80838 22.5043C2.80838 24.7434 4.09007 26.7893 6.35186 28.1102C6.78536 28.368 7.01152 28.8029 6.95498 29.254L6.54032 32.0086L11.045 29.7211C11.2712 29.6084 11.5162 29.5439 11.7613 29.5439C14.5319 29.5439 17.1519 28.5291 18.8105 26.8054C20.0545 25.5489 20.7142 24.0669 20.7142 22.4882C20.7142 18.6059 16.6995 15.4324 11.7613 15.4324Z"
                     fill="#828282" />
                 </svg> Comment</a>
-              <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="41" height="39" viewBox="0 0 41 39"
+              <!-- <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="41" height="39" viewBox="0 0 41 39"
                   fill="none">
                   <path d="M30.2207 8.53149C34.1403 11.1291 36.8448 15.2591 37.3936 20.0245" stroke="#292D32"
                     stroke-opacity="0.62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -131,7 +131,7 @@ if ($result == true) {
                     d="M34.5518 34.2274C37.5608 34.2274 40 31.9013 40 29.0322C40 26.1628 37.5608 23.8369 34.5518 23.8369C31.5429 23.8369 29.1035 26.1628 29.1035 29.0322C29.1035 31.9013 31.5429 34.2274 34.5518 34.2274Z"
                     stroke="#292D32" stroke-opacity="0.62" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
-                </svg>Share</a>
+                </svg>Share</a> -->
             </div>
           </div>
           <?php
