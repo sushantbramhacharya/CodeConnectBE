@@ -72,9 +72,9 @@ body{
     color: #333;
   }
   
-  .nav-links li a:hover {
+  /* .nav-links li a:hover {
     background-color: #ddd;
-  }
+  } */
   .icon{
     width: 34px;
     height: auto;
@@ -158,9 +158,24 @@ body{
     line-height: normal;
 }
 .inner-sidebar a {
+  display: flex;
   text-decoration: none;
   color: #000;
+  width: 170px;
+  height: auto;
+  justify-content: center;
+
+  
 }
+.connection-req p {
+  display: block;
+  font-family: Poppins;
+  font-size: 20px;
+  margin: 5px 6px;
+
+}
+
+
 .profile-section-buttons a{
   display: flex;
   align-items: center;
