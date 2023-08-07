@@ -11,31 +11,49 @@ if(isset($_POST["description"]))
   exit(header("Location: ../home"));
 }
 $sid=$_SESSION["uid"];
-$query = "SELECT Name FROM User Where uid ='$sid';";
-$result=mysqli_query($conn,$query);
-$user=mysqli_fetch_assoc($result);
-//Query Posts
-$sid = $_SESSION["uid"];
-$query = "SELECT * FROM discussion ORDER BY posted_date DESC;";
-$result = mysqli_query($conn, $query);
-$posts = array();
-if ($result == true) {
-    while ($row = $result->fetch_assoc()) {
-
-        $posts[] = $row;
-    }
-} else {
-    echo "Something went wrong!<BR>";
+if(isset($_GET["uid"]))
+{
+  $uid=$_GET["uid"];
+  $posts=queryPosts($conn,$uid);
+}
+else{
+  $posts=queryPosts($conn,$sid);
 }
 
-
-/*query of posting discussions*/
-
+function queryPosts($conn,$id)
+{
+  $query = "SELECT * FROM discussion WHERE uid='$id' ORDER BY posted_date DESC;";
+  $result = mysqli_query($conn, $query);
+  $posts = array();
+  if ($result == true) {
+      while ($row = $result->fetch_assoc()) {
+  
+          $posts[] = $row;
+      }
+  } else {
+      echo "Something went wrong!<BR>";
+  }
+  return $posts;
+}
 
 ?>
 <script src="../components/post_scripts/geek.js"></script>
+
 <div class="posts">
-    <div class="post-header"> <h1>Posts</h1> <button id="postBtn">Post</button> </div>
+    <div class="post-header"> <h1>Posts</h1> 
+    <?php
+if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
+{
+?>
+<button id="postBtn">Post</button>
+<?php
+}
+?>
+</div>
+<?php
+if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
+{
+?>
     <form action="index.php" method="post">
     <div id="postPopup">
     <div class="popupContent">
@@ -53,6 +71,9 @@ if ($result == true) {
       <button id="cancelPostBtn">Cancel</button>
     </div>
   </div>
+  <?php
+}
+?>
   </form>
     <div class="post-content">
         <div class="newsfeed">
@@ -83,6 +104,7 @@ if ($result == true) {
 
               </div>
               <script>
+
                 $.ajax({
                 url: "../components/post_scripts/geek.php",
                 method: "POST", // Or "GET" depending on your needs

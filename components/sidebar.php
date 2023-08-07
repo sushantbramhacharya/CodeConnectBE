@@ -1,10 +1,19 @@
 <?php
-
-//Query User Info
 $sid=$_SESSION["uid"];
-$query = "SELECT * FROM User Where uid ='$sid';";
-$result=mysqli_query($conn,$query);
-$user=mysqli_fetch_assoc($result);
+if(isset($_GET["uid"]))
+{
+  $uid=$_GET["uid"];
+  $user=queryUser($conn,$uid);
+}
+else{
+  $user=queryUser($conn,$sid);
+}
+function queryUser($conn,$id)
+{
+  $query = "SELECT * FROM User Where uid ='$id';";
+  $result=mysqli_query($conn,$query);
+  return mysqli_fetch_assoc($result);
+}
 ?>
 
 <div class="sidebar">
@@ -20,6 +29,10 @@ $user=mysqli_fetch_assoc($result);
           <p class="center">177</p>
         </a>
         <hr>
+        <?php
+          if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
+          {
+          ?>
         <div class="profile-section-buttons">
           <a href="">
             <svg xmlns="http://www.w3.org/2000/svg" width="23" height="25" viewBox="0 0 23 25" fill="none">
@@ -32,7 +45,8 @@ $user=mysqli_fetch_assoc($result);
             </svg>
             <p>Saved</p>
           </a>
-          <a href="">
+          
+          <a href="../profile">
             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
               <path
                 d="M12.6399 14.2789C12.6166 14.2789 12.5817 14.2789 12.5585 14.2789C12.5236 14.2789 12.4771 14.2789 12.4422 14.2789C9.80266 14.1975 7.82593 12.1394 7.82593 9.60448C7.82593 7.0231 9.93057 4.91846 12.512 4.91846C15.0934 4.91846 17.198 7.0231 17.198 9.60448C17.1864 12.151 15.198 14.1975 12.6748 14.2789C12.6515 14.2789 12.6515 14.2789 12.6399 14.2789ZM12.5004 6.651C10.8725 6.651 9.55848 7.97658 9.55848 9.59285C9.55848 11.1859 10.8027 12.4766 12.3841 12.5347C12.419 12.5231 12.5352 12.5231 12.6515 12.5347C14.2096 12.4533 15.4306 11.1743 15.4422 9.59285C15.4422 7.97658 14.1282 6.651 12.5004 6.651Z"
@@ -45,9 +59,16 @@ $user=mysqli_fetch_assoc($result);
                 fill="#A0A0A0" />
             </svg>
             <p>Profile</p>
-          </a>
-
+            </a>
         </div>
+          <?php
+          }else{
+          ?>
+          <!-- OTHER PROFILE COMPONENTS -->
+          <h1>My Skill is 0</h1>
+          <?php
+          }
+          ?>
       </div>
     </div>
     

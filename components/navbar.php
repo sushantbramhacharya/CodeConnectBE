@@ -1,4 +1,48 @@
 <link rel="stylesheet" href="../components/navbar.css">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  $(document).ready(function () {
+    const searchInput = $('#search-input');
+    const searchDropdown = $('#search-dropdown'); 
+
+    searchInput.on('input', function () {
+      const searchTerm = searchInput.val().trim();
+      if (searchTerm !== '') {
+        $.ajax({
+          type: 'GET',
+          url: '../components/search.php', 
+          data: { searchTerm: searchTerm },
+          dataType: 'json',
+          success: function (response) {
+            updateDropdown(response);
+          },
+          error: function (xhr, status, error) {
+            console.error('AJAX error:', status, error);
+            console.log('XHR object:', xhr);
+          }
+        });
+      } else {
+        searchDropdown.html('');
+      }
+    });
+
+    function updateDropdown(results) {
+      searchDropdown.html('');
+      if (results.length > 0) {
+        results.forEach(result => {
+          const option = $('<a>').attr('href', '../profile/index.php?uid='+result.uid).addClass('dropdown-option').text(result.name);
+          searchDropdown.append(option);
+        });
+      } else {
+        const noResults = $('<div>').addClass('no-results').text('No results found');
+        searchDropdown.append(noResults);
+      }
+    }
+  });
+</script>
+
+
 <nav>
     <div class="navbar">
       <div class="left-section-nav">
@@ -15,7 +59,8 @@
               d="M44.956 46.5802C44.5443 46.5802 44.1327 46.4286 43.8078 46.1036L39.4751 41.7709C38.8468 41.1427 38.8468 40.1028 39.4751 39.4746C40.1033 38.8464 41.1432 38.8464 41.7714 39.4746L46.1041 43.8073C46.7324 44.4355 46.7324 45.4754 46.1041 46.1036C45.7792 46.4286 45.3676 46.5802 44.956 46.5802Z"
               fill="white" />
           </svg>
-          <input type="text">
+          <input id="search-input" type="text">
+          <div id="search-dropdown" class="search-dropdown"></div>
         </div>
       </div>
       <ul class="nav-links">
