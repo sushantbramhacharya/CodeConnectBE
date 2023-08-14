@@ -38,7 +38,7 @@ function queryPosts($conn,$id)
 
 ?>
 <script src="../components/post_scripts/geek.js"></script>
-
+<script src="../components/connectionRequest.js"></script>
 <div class="posts">
     <div class="post-header"> <h1>Posts</h1> 
     <?php
@@ -51,6 +51,9 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
 ?>
 </div>
 <?php
+
+
+
 if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
 {
 ?>
@@ -104,39 +107,7 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
 
               </div>
               <script>
-
-                $.ajax({
-                url: "../components/post_scripts/geek.php",
-                method: "POST", // Or "GET" depending on your needs
-                data: {
-                  discussion_id:<?php echo $post['discussion_id']?>,
-                  geeking:"false"
-                }, // You can pass data to the PHP script here if needed
-                success: function(response) {
-                  // Handle the response from the PHP script here (if required)
-                  const data = JSON.parse(response);
-                  data.map((geeker,index)=>{
-                        if(geeker.Name)
-                        {
-                          if(index<data.length-2)
-                          {
-                            document.getElementById("<?php echo $post['discussion_id']?>").innerHTML+=" "+geeker.Name+",";
-                          }else{
-                            document.getElementById("<?php echo $post['discussion_id']?>").innerHTML+=" "+geeker.Name;
-                          }
-                        }
-                        else if(parseInt(geeker.count)>0){
-                          document.getElementById("<?php echo $post['discussion_id']?>").innerHTML+=" and "+geeker.count+" Others";
-                        }
-                  })
-                  
-                  ;
-                },
-                error: function(xhr, status, error) {
-                  // Handle errors, if any
-                  console.error(error);
-                }
-                });
+                geekFetch(<?php echo $post['discussion_id']?>);
                 </script>
 
               <a class="saved-posts" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="25"

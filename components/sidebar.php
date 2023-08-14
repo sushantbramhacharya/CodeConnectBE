@@ -66,14 +66,19 @@ function queryUser($conn,$id)
           ?>
           <!-- OTHER PROFILE COMPONENTS -->
           <div class="connection-req">
-         <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 72 72" fill="none">
+         <a href="#" onclick="checkingConnection(<?php echo $_GET['uid'];?>,true)" ><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 72 72" fill="none">
             <path d="M30.3794 40.19C35.0351 40.19 38.8094 36.4157 38.8094 31.76C38.8094 27.1042 35.0351 23.33 30.3794 23.33C25.7237 23.33 21.9495 27.1042 21.9495 31.76C21.9495 36.4157 25.7237 40.19 30.3794 40.19Z" stroke="black" stroke-width="2.044" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M45.9502 59.5999C45.9502 52.6099 38.9902 46.9099 30.3802 46.9099C21.7703 46.9099 14.8103 52.5799 14.8103 59.5999" stroke="black" stroke-width="2.044" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M59 36.4998C59 52.2498 46.25 64.9998 30.5 64.9998C14.75 64.9998 2 52.2498 2 36.4998C2 20.7498 14.75 7.99976 30.5 7.99976C34.43 7.99976 38.18 8.77973 41.6 10.2197C41.21 11.4197 41 12.6798 41 13.9998C41 16.2498 41.63 18.3798 42.74 20.1798C43.34 21.1998 44.12 22.1297 45.02 22.9097C47.12 24.8297 49.91 25.9998 53 25.9998C54.32 25.9998 55.58 25.7897 56.75 25.3697C58.19 28.7897 59 32.5698 59 36.4998Z" stroke="black" stroke-width="2.044" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M64.9998 14C64.9998 14.96 64.8798 15.89 64.6398 16.79C64.3698 17.99 63.8898 19.16 63.2598 20.18C61.8198 22.61 59.5098 24.4999 56.7498 25.3699C55.5798 25.7899 54.3198 26 52.9998 26C49.9098 26 47.1198 24.8299 45.0198 22.9099C44.1198 22.1299 43.3398 21.2 42.7398 20.18C41.6298 18.38 40.9998 16.25 40.9998 14C40.9998 12.68 41.2098 11.42 41.5998 10.22C42.1698 8.47997 43.1298 6.92006 44.3898 5.63006C46.5798 3.38006 49.6398 2 52.9998 2C56.5398 2 59.7498 3.53006 61.9098 5.99006C63.8298 8.12006 64.9998 10.94 64.9998 14Z" stroke="black" stroke-width="2.044" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M57.4698 13.9399H48.5298" stroke="black" stroke-width="2.044" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M53.0002 9.56006V18.53" stroke="black" stroke-width="2.044" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg><p>Connect</p></a></div>
+          </svg><p id="connections">Connect</p></a></div>
+          <script>
+            $(document).ready(function() {
+                checkingConnection(<?php echo $_GET['uid'];?>,false);
+            });
+          </script>
           <?php
           }
           ?>
