@@ -5,8 +5,8 @@ if(isset($_POST["description"]))
   $description=$_POST["description"];
   $post_code_send=$_POST["code"];
 
-  $post_query = "INSERT INTO discussion (uid,post_description,code_text)
-  VALUES ($uid, '$description', '$post_code_send');";
+  $post_query = "INSERT INTO discussion (uid,post_description,code_text,posted_date)
+  VALUES ($uid, '$description', '$post_code_send',".time().");";
   mysqli_query($conn, $post_query);
   exit(header("Location: ../home"));
 }
@@ -28,9 +28,26 @@ if ($result == true) {
     echo "Something went wrong!<BR>";
 }
 
+function formatRelativeTime($timestamp) {
+  $currentTime = time();
+  $targetTime = $timestamp;
+  $timeDifference =  abs($currentTime-$targetTime);
 
-/*query of posting discussions*/
-
+  if ($timeDifference < 20) {
+      return "Just Now";
+  } elseif ($timeDifference < 60) {
+      return $timeDifference . "s ago";
+  } elseif ($timeDifference < 3600) {
+      $minutesAgo = floor($timeDifference / 60);
+      return $minutesAgo . "m ago";
+  } elseif ($timeDifference < 86400) {
+      $hoursAgo = floor($timeDifference / 3600);
+      return $hoursAgo . "h ago";
+  } else {
+      $daysAgo = floor($timeDifference / 86400);
+      return $daysAgo . "d ago";
+  }
+}
 
 ?>
 <script src="../components/post_scripts/geek.js"></script>
@@ -50,7 +67,7 @@ if ($result == true) {
       <textarea id="postContent" name="description" placeholder="Write your post here..."></textarea>
       <textarea id="postContent" name="code" placeholder="Write your code here if you want..."></textarea>
       <button id="submitPostBtn" type="submit" >Submit</button>
-      <button id="cancelPostBtn">Cancel</button>
+      <button id="cancelPostBtn" type="button">Cancel</button>
     </div>
   </div>
   </form>
@@ -63,7 +80,7 @@ if ($result == true) {
                 $time_stamp=$post['posted_date'];
                 $poster_uid=$post['uid'];
 
-                $query="SELECT Name FROM user WHERE uid = '$poster_uid';";
+                $query="SELECT Name,bio FROM user WHERE uid = '$poster_uid';";
                 $result_name= mysqli_query($conn,$query);
                 $poster_name = $result_name->fetch_assoc(); 
             ?>
@@ -74,11 +91,11 @@ if ($result == true) {
                   <img src="../img/Profile-Picture.png" alt="Profile Picture">
                 </a>
                 <div class="profile-info-posts">
-                  <a href="">
+                  <a href="../profile/index.php?uid=<?php echo $poster_uid;?>">
                     <h3><?php echo $poster_name['Name'];?></h3>
                   </a>
-                  <p>Loves Lolipop</p>
-                  <p><?php echo $time_stamp; ?></p>
+                  <p><?php echo $poster_name['bio'];?></p>
+                  <p><?php echo formatRelativeTime($time_stamp); ?></p>
                 </div>
 
               </div>

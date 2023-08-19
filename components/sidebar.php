@@ -25,9 +25,23 @@ function queryUser($conn,$id)
         <p class="center"><?php echo $user['bio'] ?></p>
         <hr>
         <h2 class="center">Connections</h2>
-        <a href="">
-          <p class="center">177</p>
-        </a>
+          <p class="center">
+          <?php
+          if(isset($_GET["uid"]))
+          {
+            $id=$_GET["uid"];
+            $query = "SELECT * FROM connections WHERE (sender_uid =$id OR reciever_uid = $id) AND status_accepted = true;";
+            $result=mysqli_query($conn,$query);
+            echo $result->num_rows;
+          }else{
+            $id=$sid;
+            $query = "SELECT * FROM connections WHERE (sender_uid =$id OR reciever_uid = $id) AND status_accepted = true;";
+            $result=mysqli_query($conn,$query);
+            echo $result->num_rows;
+          }
+          ?>
+          </p>
+
         <hr>
         <?php
           if(!isset($_GET["uid"])||$_GET["uid"]===$sid)

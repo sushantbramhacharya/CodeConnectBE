@@ -19,6 +19,10 @@
             <form class="login-form" action="index.php" method="POST">
                 <img class="logo mbl-logo" src="../img/logo.png" alt="logo">
                 <?php
+                header("Access-Control-Allow-Origin: *");
+                header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Specify allowed HTTP methods
+                header("Access-Control-Allow-Headers: Content-Type"); // Specify allowed headers
+                
                     require_once("../session_auth.php");
                     require_once("../db_connect.php");
                     if(isset($_POST ['email'])&& isset($_POST['password']))
