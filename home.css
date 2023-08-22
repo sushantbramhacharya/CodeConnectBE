@@ -347,6 +347,7 @@ line-height: normal;
     border: 1px solid rgba(173, 173, 173, 0.42);
     background: #2F2F2F;
     padding: 20px;
+    display: block;
     color:white ;
     color: #FFF;
     font-family: Source Code Pro;

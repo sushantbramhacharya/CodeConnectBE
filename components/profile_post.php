@@ -52,7 +52,26 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
 </div>
 <?php
 
+function formatRelativeTime($timestamp) {
+  $currentTime = time();
+  $targetTime = $timestamp;
+  $timeDifference =  abs($currentTime-$targetTime);
 
+  if ($timeDifference < 20) {
+      return "Just Now";
+  } elseif ($timeDifference < 60) {
+      return $timeDifference . "s ago";
+  } elseif ($timeDifference < 3600) {
+      $minutesAgo = floor($timeDifference / 60);
+      return $minutesAgo . "m ago";
+  } elseif ($timeDifference < 86400) {
+      $hoursAgo = floor($timeDifference / 3600);
+      return $hoursAgo . "h ago";
+  } else {
+      $daysAgo = floor($timeDifference / 86400);
+      return $daysAgo . "d ago";
+  }
+}
 
 if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
 {
@@ -87,7 +106,7 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
                 $time_stamp=$post['posted_date'];
                 $poster_uid=$post['uid'];
 
-                $query="SELECT Name FROM user WHERE uid = '$poster_uid';";
+                $query="SELECT Name,bio FROM user WHERE uid = '$poster_uid';";
                 $result_name= mysqli_query($conn,$query);
                 $poster_name = $result_name->fetch_assoc(); 
             ?>
@@ -101,8 +120,8 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
                   <a href="">
                     <h3><?php echo $poster_name['Name'];?></h3>
                   </a>
-                  <p>Loves Lolipop</p>
-                  <p><?php echo $time_stamp; ?></p>
+                  <p><?php echo $poster_name['bio'];?></p>
+                  <p><?php echo formatRelativeTime($time_stamp); ?></p>
                 </div>
 
               </div>
@@ -120,14 +139,12 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
                     stroke="#7E7E7E" stroke-linecap="round" stroke-linejoin="round" />
                 </svg></a>
             </div>
-            <div class="post-content">
+            <div class="post-content" style="max-height: 100%;">
               <p class="post-description" id="test">
               <?php echo $post_description?>
               </p>
               <?php if($post_code){?>
-              <p class="code">
-               <?php echo $post_code?>
-              </p>
+              <pre class="code"><?php echo $post_code?></pre>
               <?php };?>
             </div>
             <p class="geeked" id="<?php echo $post['discussion_id']?>">Geeked By</p>

@@ -114,14 +114,14 @@ function formatRelativeTime($timestamp) {
                     stroke="#7E7E7E" stroke-linecap="round" stroke-linejoin="round" />
                 </svg></a>
             </div>
-            <div class="post-content">
+            <div class="post-content" style="max-height: 100%;">
               <p class="post-description" id="test">
               <?php echo $post_description?>
               </p>
               <?php if($post_code){?>
-              <p class="code">
-               <?php echo $post_code?>
-              </p>
+
+               <pre class="code" ><?php echo $post_code?></pre>
+
               <?php };?>
             </div>
             <p class="geeked" id="<?php echo $post['discussion_id']?>">Geeked By</p>
