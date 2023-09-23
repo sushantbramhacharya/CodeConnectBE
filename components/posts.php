@@ -104,7 +104,7 @@ function formatRelativeTime($timestamp) {
                 geekFetch(<?php echo $post['discussion_id']?>);
                 </script>
 
-              <a class="saved-posts" href="#"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="25"
+              <a class="saved-posts" href="" onclick="onSaveClick(event,<?php echo $post['discussion_id']?>)"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="25"
                   viewBox="0 0 17 25" fill="none">
                   <path
                     d="M12.7126 1H4.34491C2.50574 1 1 2.99185 1 5.42477V21.5874C1 23.6504 2.11856 24.5325 3.48449 23.5223L7.71135 20.4065C8.16308 20.0792 8.89445 20.0792 9.33542 20.4065L13.5623 23.5223C14.9282 24.5325 16.0468 23.6504 16.0468 21.5874V5.42477C16.0575 2.99185 14.5518 1 12.7126 1Z"
@@ -137,29 +137,6 @@ function formatRelativeTime($timestamp) {
                     d="M6.2576 34.6183C5.76754 34.6183 5.29634 34.5055 4.86283 34.2639C4.01466 33.7967 3.56232 32.9913 3.67541 32.1375L4.05236 29.6567C1.50785 27.8847 0 25.2589 0 22.5043C0 19.363 1.92253 16.4312 5.14557 14.6753C7.08693 13.596 9.38639 13.0161 11.7801 13.0161C18.2828 13.0161 23.5603 17.2688 23.5603 22.5043C23.5603 24.6307 22.6556 26.7249 20.9969 28.3841C18.8671 30.591 15.6817 31.8797 12.1759 31.9764L7.57697 34.3122C7.16231 34.5216 6.70995 34.6183 6.2576 34.6183ZM11.7613 15.4324C9.91414 15.4324 8.1424 15.8674 6.65339 16.705C4.24082 18.026 2.80838 20.1846 2.80838 22.5043C2.80838 24.7434 4.09007 26.7893 6.35186 28.1102C6.78536 28.368 7.01152 28.8029 6.95498 29.254L6.54032 32.0086L11.045 29.7211C11.2712 29.6084 11.5162 29.5439 11.7613 29.5439C14.5319 29.5439 17.1519 28.5291 18.8105 26.8054C20.0545 25.5489 20.7142 24.0669 20.7142 22.4882C20.7142 18.6059 16.6995 15.4324 11.7613 15.4324Z"
                     fill="#828282" />
                 </svg> Comment</a>
-              <!-- <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="41" height="39" viewBox="0 0 41 39"
-                  fill="none">
-                  <path d="M30.2207 8.53149C34.1403 11.1291 36.8448 15.2591 37.3936 20.0245" stroke="#292D32"
-                    stroke-opacity="0.62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  <path d="M3.82227 20.1179C4.33181 15.3711 6.99714 11.2411 10.8775 8.62476" stroke="#292D32"
-                    stroke-opacity="0.62" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                  <path
-                    d="M13.0332 36.1333C15.3066 37.2359 17.8935 37.8526 20.6176 37.8526C23.2438 37.8526 25.7131 37.292 27.9277 36.2641"
-                    stroke="#292D32" stroke-opacity="0.62" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                  <path
-                    d="M20.6176 11.3905C23.6267 11.3905 26.0659 9.06451 26.0659 6.19524C26.0659 3.32599 23.6267 1 20.6176 1C17.6087 1 15.1694 3.32599 15.1694 6.19524C15.1694 9.06451 17.6087 11.3905 20.6176 11.3905Z"
-                    stroke="#292D32" stroke-opacity="0.62" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                  <path
-                    d="M6.44824 34.2274C9.45721 34.2274 11.8965 31.9013 11.8965 29.0322C11.8965 26.1628 9.45721 23.8369 6.44824 23.8369C3.43926 23.8369 1 26.1628 1 29.0322C1 31.9013 3.43926 34.2274 6.44824 34.2274Z"
-                    stroke="#292D32" stroke-opacity="0.62" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                  <path
-                    d="M34.5518 34.2274C37.5608 34.2274 40 31.9013 40 29.0322C40 26.1628 37.5608 23.8369 34.5518 23.8369C31.5429 23.8369 29.1035 26.1628 29.1035 29.0322C29.1035 31.9013 31.5429 34.2274 34.5518 34.2274Z"
-                    stroke="#292D32" stroke-opacity="0.62" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round" />
-                </svg>Share</a> -->
             </div>
           </div>
           <?php
@@ -169,3 +146,4 @@ function formatRelativeTime($timestamp) {
     </div>
 </div>
 <script src="../components/posts.js"></script>
+<script src="../components/post_scripts/save_post.js"></script>

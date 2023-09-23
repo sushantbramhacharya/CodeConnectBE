@@ -1,7 +1,7 @@
 <?php
-require_once("../db_connect.php");
-session_start();
+require_once("../../db_connect.php");
 
+session_start();
 if (isset($_SESSION["uid"]) && isset($_POST["discussion_id"])) {
     $uid = $_SESSION["uid"];
     $discussion_id = $_POST["discussion_id"];
@@ -23,6 +23,6 @@ if (isset($_SESSION["uid"]) && isset($_POST["discussion_id"])) {
         }
     }
 } else {
-    echo "invalid_request";
+    var_dump($_POST);
 }
 ?>

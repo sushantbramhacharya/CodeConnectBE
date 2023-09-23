@@ -3,28 +3,34 @@ header('Access-Control-Allow-Origin: http://localhost:3000');
 header('Access-Control-Allow-Credentials: true');
 header('Content-Type: application/json');
 session_start();
-$sid = $_SESSION['uid'] ;
 
+$sid = $_SESSION['uid'] ;
 require_once("../db_connect.php");
 $resp=array();
 $query="SELECT * FROM connections WHERE (sender_uid = $sid or reciever_uid = $sid) AND status_accepted = true";
 $result=$conn->query($query);
-$row=$result->fetch_assoc();
 
-$sender_uid = $row["sender_uid"];
-$reciever_uid = $row["reciever_uid"];
 
-if($sender_uid === $sid)
+
+while($row=$result->fetch_assoc())
 {
-    echo $reciever_uid;
+    $sender_uid = $row["sender_uid"];
+    $reciever_uid = $row["reciever_uid"];
+    if($sender_uid === $sid)
+    {
+        $resp["Connections"][]=fetch_name($conn,$reciever_uid);
+    }
+    else if($reciever_uid === $sid)
+    {
+        $resp["Connections"][]=fetch_name($conn,$sender_uid);
+    }
 }
-else if($reciever_uid === $sid)
+function fetch_name($conn,$uid)
 {
-    echo $sender_uid;
+    $query="SELECT Name FROM user WHERE uid=$uid";
+    $result=$conn->query($query);
+    $row=$result->fetch_assoc();
+    return $row["Name"];
 }
-
-$query_name = "SELECT Name FROM user WHERE uid = $reciever_uid OR uid = $sender_uid";
-$result=$conn->query($query_name);
-$row=$result->fetch_assoc();
-echo $result;
+echo json_encode($resp);
 ?>

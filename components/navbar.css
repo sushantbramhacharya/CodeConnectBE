@@ -86,3 +86,10 @@ svg{
     margin: 0 !important;
     padding: 0 !important;
 }  
+
+.toggle-post-navbar{
+  text-decoration: none;
+  font-size: 10px;
+  color: white;
+  vertical-align: center;
+}
