@@ -1,3 +1,7 @@
+<!-- Preload Scripts -->
+<script src="../components/post_scripts/save_post.js"></script>
+
+
 <?php
 if(isset($_POST["description"]))
 {
@@ -14,19 +18,83 @@ $sid=$_SESSION["uid"];
 $query = "SELECT Name FROM User Where uid ='$sid';";
 $result=mysqli_query($conn,$query);
 $user=mysqli_fetch_assoc($result);
-//Query Posts
-$sid = $_SESSION["uid"];
-$query = "SELECT * FROM discussion ORDER BY posted_date DESC;";
-$result = mysqli_query($conn, $query);
-$posts = array();
-if ($result == true) {
-    while ($row = $result->fetch_assoc()) {
 
-        $posts[] = $row;
-    }
-} else {
-    echo "Something went wrong!<BR>";
+
+//Query Posts
+ if(isset($_GET["codeSearchKeyword"]))
+{
+  $keyword=$_GET["codeSearchKeyword"];
+  $sid = $_SESSION["uid"];
+  $query = 'SELECT * FROM discussion WHERE post_description LIKE "%'.$keyword.'%" OR code_text LIKE "%'.$keyword.'%" ORDER BY posted_date DESC; ';
+  $result = mysqli_query($conn, $query);
+  $posts = array();
+  if ($result == true) {
+      while ($row = $result->fetch_assoc()) {
+  
+          $posts[] = $row;
+      }
+  } else {
+      echo "Something went wrong!<BR>";
+  }
 }
+else if(isset($_GET["friendsOnly"])&&$_GET["friendsOnly"]=="true")
+{
+  $sid = $_SESSION["uid"];
+  $query = "SELECT * FROM discussion d WHERE d.uid IN (SELECT
+            CASE
+              WHEN sender_uid = $sid 
+              THEN reciever_uid
+              ELSE sender_uid
+            END AS uid
+          FROM connections c
+          WHERE
+            ($sid = sender_uid OR $sid = reciever_uid) 
+            AND status_accepted = 1
+            )
+            ORDER BY posted_date DESC;";
+  $result = mysqli_query($conn, $query);
+  $posts = array();
+  if ($result == true) {
+      while ($row = $result->fetch_assoc()) {
+  
+          $posts[] = $row;
+      }
+  } else {
+      echo "Something went wrong!<BR>";
+  }
+}
+else if(isset($_GET["showSaved"])&&$_GET["showSaved"]=="true")
+{
+  $sid = $_SESSION["uid"];
+  $query = "SELECT * FROM discussion d WHERE d.discussion_id IN (SELECT discussion_id FROM saved WHERE uid='$sid') ORDER BY posted_date DESC;";
+  $result = mysqli_query($conn, $query);
+  $posts = array();
+  if ($result == true) {
+      while ($row = $result->fetch_assoc()) {
+  
+          $posts[] = $row;
+      }
+  } else {
+      echo "Something went wrong!<BR>";
+  }
+}
+else
+{
+  
+  $sid = $_SESSION["uid"];
+  $query = "SELECT * FROM discussion ORDER BY posted_date DESC;";
+  $result = mysqli_query($conn, $query);
+  $posts = array();
+  if ($result == true) {
+      while ($row = $result->fetch_assoc()) {
+  
+          $posts[] = $row;
+      }
+  } else {
+      echo "Something went wrong!<BR>";
+  }
+}
+
 
 function formatRelativeTime($timestamp) {
   $currentTime = time();
@@ -52,7 +120,28 @@ function formatRelativeTime($timestamp) {
 ?>
 <script src="../components/post_scripts/geek.js"></script>
 <div class="posts">
-    <div class="post-header"> <h1>Posts</h1> <button id="postBtn">Post</button> </div>
+    <div class="post-header"> <h1>Posts 
+    <?php
+    if(!isset($_GET["friendsOnly"]))
+    {
+      echo '<a 
+              style="font-size:15px; 
+              text-decoration: none;
+              color:blue;" 
+              href="http://localhost/codeconnect/home/?friendsOnly=true"
+              >Friends Only</a>';
+    }
+    else{
+      echo '<a 
+              style="font-size:15px; 
+              text-decoration: none;
+              color:blue;" 
+              href="http://localhost/codeconnect/home/"
+              >Public</a>';
+    }
+    ?>    
+  </h1> <button id="postBtn">Post</button> </div>
+    
     <form action="index.php" method="post">
     <div id="postPopup">
     <div class="popupContent">
@@ -74,6 +163,10 @@ function formatRelativeTime($timestamp) {
     <div class="post-content">
         <div class="newsfeed">
             <?php
+            if(empty($posts))
+            {
+              echo "<h2 style='color:grey;text-align:center;'>No Posts Found</h2>";
+            }
             foreach ($posts as $post) {
                 $post_description = $post['post_description'];
                 $post_code = $post['code_text'];
@@ -104,7 +197,10 @@ function formatRelativeTime($timestamp) {
                 geekFetch(<?php echo $post['discussion_id']?>);
                 </script>
 
-              <a class="saved-posts" href="" onclick="onSaveClick(event,<?php echo $post['discussion_id']?>)"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="25"
+              <a class="saved-posts"
+              id="<?php echo "saved_".$post['discussion_id']?>"
+              href="" 
+              onclick="onSaveClick(event,<?php echo $post['discussion_id']?>)"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="25"
                   viewBox="0 0 17 25" fill="none">
                   <path
                     d="M12.7126 1H4.34491C2.50574 1 1 2.99185 1 5.42477V21.5874C1 23.6504 2.11856 24.5325 3.48449 23.5223L7.71135 20.4065C8.16308 20.0792 8.89445 20.0792 9.33542 20.4065L13.5623 23.5223C14.9282 24.5325 16.0468 23.6504 16.0468 21.5874V5.42477C16.0575 2.99185 14.5518 1 12.7126 1Z"
@@ -113,7 +209,11 @@ function formatRelativeTime($timestamp) {
                     d="M16.0575 5.42477V21.5874C16.0575 23.6504 14.939 24.5182 13.573 23.5223L9.34619 20.4065C8.89446 20.0792 8.16307 20.0792 7.71135 20.4065L3.48449 23.5223C2.11856 24.5182 1 23.6504 1 21.5874V5.42477C1 2.99185 2.50574 1 4.34491 1H12.7126C14.5518 1 16.0575 2.99185 16.0575 5.42477Z"
                     stroke="#7E7E7E" stroke-linecap="round" stroke-linejoin="round" />
                 </svg></a>
+                <script>
+                  checkSaved(<?php echo $post['discussion_id']?>);
+                </script>
             </div>
+            
             <div class="post-content" style="max-height: 100%;">
               <p class="post-description" id="test">
               <?php echo $post_description?>
@@ -146,4 +246,3 @@ function formatRelativeTime($timestamp) {
     </div>
 </div>
 <script src="../components/posts.js"></script>
-<script src="../components/post_scripts/save_post.js"></script>

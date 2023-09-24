@@ -43,19 +43,10 @@ document.addEventListener('click', (event) => {
 
 let profileSearch=true;
 
-function togglePost(event)
+function searchPost(event)
 {
-  event.preventDefault();
-  if(profileSearch)
-  {
-    profileSearch=false;
-    event.target.style.color="red";
-  }
-  else
-  {
-    profileSearch=true;
-    event.target.style.color="white";
-  }
+  keyword=$('#search-input').val();
+  $(event.target).attr('href', 'http://localhost/codeconnect/home/?codeSearchKeyword='+keyword);
 }
 
 $(document).ready(function () {
@@ -98,10 +89,17 @@ $(document).ready(function () {
       results.forEach(result => {
         const option = $('<a>').attr('href', '../profile/index.php?uid='+result.uid).addClass('dropdown-option').text(result.name);
         searchDropdown.append(option);
+        //Post Search Code
       });
+      const postSearch=$('<a>').attr({onClick: 'searchPost(event)',href:''}).addClass('dropdown-option search-post').text("Search Post");
+      searchDropdown.append(postSearch);
     } else {
       const noResults = $('<div>').addClass('no-results').text('No results found');
       searchDropdown.append(noResults);
+
+      //Post Search Code
+      const postSearch=$('<a>').attr({onClick: 'searchPost(event)',href:''}).addClass('dropdown-option search-post').text("Search Post");
+      searchDropdown.append(postSearch);
     }
   }
 });

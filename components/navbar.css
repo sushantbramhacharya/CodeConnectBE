@@ -87,9 +87,7 @@ svg{
     padding: 0 !important;
 }  
 
-.toggle-post-navbar{
-  text-decoration: none;
-  font-size: 10px;
-  color: white;
-  vertical-align: center;
+.search-post{
+  color: #007bff;
+  text-decoration: underline;
 }

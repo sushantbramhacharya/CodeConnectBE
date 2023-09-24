@@ -17,3 +17,4 @@ cancelPostBtn.addEventListener('click', function() {
   // Close the popup without submitting the post
   postPopup.style.display = 'none';
 });
+

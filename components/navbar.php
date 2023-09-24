@@ -10,8 +10,9 @@
         </div>
         <div class="search">
           <input id="search-input" type="text">
-          <a class="toggle-post-navbar" href="" onclick="togglePost(event)">Toggle Post</a>
-          <div id="search-dropdown" class="search-dropdown"></div>
+          
+          <div id="search-dropdown" class="search-dropdown">
+          </div>
         </div>
       </div>
       <ul class="nav-links">
