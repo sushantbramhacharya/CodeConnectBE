@@ -120,6 +120,7 @@ body{
 .sidebar{
   margin: 0 2%;
   width: 280px;
+  height: fit-content;
   flex-shrink: 0;
   border-radius: 65px;
   border: 1px solid rgba(173, 173, 173, 0.42);
@@ -134,7 +135,6 @@ body{
     left: 50%;
     transform: translateX(-50%);
     width: auto;
-    height: 35%;
 }
 .inner-sidebar{
     margin-top: 45%;

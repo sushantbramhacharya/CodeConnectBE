@@ -1,0 +1,129 @@
+.profile-container{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid #ccc;
+    border-radius:50px;
+    background: #fff;
+    
+ }
+ .profile-description{
+   flex: 1;
+   padding: 50px;
+    display: flex;
+    flex-direction: column;
+ }
+
+ 
+ .profile-name a{
+    text-decoration: none;
+    font-family: Poppins;
+    color: #000;
+    text-align:justify;   
+ }
+ .profile-name a h3{
+    margin-left: 65px;
+ }
+ .profile-name a p{
+    color: #000;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 20px;
+}
+ .profile-name ul{
+    padding-left: 10px;
+    list-style: none;
+    flex-wrap: wrap;
+    gap: 3px;
+ }
+ .profile-name ul li{
+    align-items: center;
+    height: 30px;
+    width: auto;
+ }
+ .profile-name ul li p{
+    margin-left: 10px;
+    display: inline;
+ }
+ .profile-name ul li h3{
+   margin-left: 10px;
+   display: inline;
+}
+ .bio-section{
+    
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    background: #fff;
+
+ }
+ .bio-section h3{
+    font-family: Poppins;
+    text-align: center;
+ }
+ .bio-section p{
+    font-family: Poppins;
+    text-align: center;
+ }
+
+ .profile-showcase {
+   flex: 1;
+   display: flex;
+   flex-direction: column;
+   border: 1px solid #ccc;
+   border-radius: 25px;
+   padding: 10px;
+   background: #fff;
+   margin-top: 50px;
+   margin-right: 50px;
+   margin-bottom: 20px;
+   height: fit-content;
+}
+ .projects h3{
+    padding-left: 30px;
+ }
+ .project-title{
+    display: flex;
+    justify-content: space-between;
+ }
+ .project-title ul{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+ }
+ .project-title ul li {
+    display: flex;
+    align-items: center;
+ }
+.certification h3{
+    padding-left: 30px;
+}
+
+.skills h3{
+    padding-left: 30px;
+}
+ .skill-title{
+    display: flex;
+    justify-content: space-between;
+ }
+
+ .styled-button {
+   display: inline-block;
+   padding: 10px 20px;
+   background-color: #344388;
+   margin-top: 10px;
+   color: #fff;
+   border: none;
+   border-radius: 5px;
+   cursor: pointer;
+   font-size: 16px;
+   text-align: center;
+   text-decoration: none;
+   transition: background-color 0.3s ease;
+}
+
+.styled-button:hover {
+   background-color: #232F66;
+}

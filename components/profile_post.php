@@ -1,6 +1,7 @@
 
 
 <script src="../components/post_scripts/save_post.js"></script>
+
 <?php
 if(isset($_POST["description"]))
 {
@@ -43,6 +44,8 @@ function queryPosts($conn,$id)
 <script src="../components/post_scripts/geek.js"></script>
 <script src="../components/connectionRequest.js"></script>
 <div class="posts">
+  <!-- Profile Section -->
+  <?php require_once("../components/profile_section.php")?>
     <div class="post-header"> <h1>Posts</h1> 
     <?php
 if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
@@ -100,6 +103,7 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
 }
 ?>
   </form>
+  
     <div class="post-content">
         <div class="newsfeed">
             <?php

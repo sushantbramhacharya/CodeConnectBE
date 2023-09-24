@@ -18,6 +18,7 @@ require_once("../db_connect.php");
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
   <link rel="stylesheet" href="../home.css">
+  <link rel="stylesheet" href="profile_post.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <script src="/code.jquery.com_jquery-3.6.0.min.js"></script>
 </head>
