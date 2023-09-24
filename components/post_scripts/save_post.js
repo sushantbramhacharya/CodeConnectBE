@@ -3,7 +3,6 @@ function onSaveClick(event,discussion_id)
     event.preventDefault();
     
     var savepost = "../api/save_posts/index.php";
-    console.log(discussion_id);
     (function(event){
         $.ajax({
         type: "POST",
@@ -31,8 +30,6 @@ function checkSaved(discussion_id)
 {
     element=$("#saved_"+discussion_id);
     let savepost = "../api/save_posts/index.php";
-    console.log(element.find("svg").css('fill'));
-
     //Use of closures
     (function(element)
     {$.ajax({
@@ -42,7 +39,6 @@ function checkSaved(discussion_id)
         success: function(response) {
             if (response === "already_saved") {
             element.children().attr('fill', 'grey');
-            console.log(element.children().css('fill'));
             }
             else if (response === "error") {
                 alert("Error");

@@ -21,6 +21,7 @@ function queryUser($conn,$id)
       <div class="inner-sidebar">
         <h1 class="center">
           <?php echo $user['Name'] ?>
+          <script>var userName="<?php echo $user['Name'] ?>";</script>
         </h1>
         <p class="center"><?php echo $user['bio'] ?></p>
         <hr>
@@ -98,4 +99,3 @@ function queryUser($conn,$id)
           ?>
       </div>
     </div>
-    

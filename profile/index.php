@@ -19,7 +19,7 @@ require_once("../db_connect.php");
   <title>Home</title>
   <link rel="stylesheet" href="../home.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/code.jquery.com_jquery-3.6.0.min.js"></script>
 </head>
 
 <body>

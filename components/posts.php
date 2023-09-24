@@ -1,4 +1,5 @@
 <!-- Preload Scripts -->
+
 <script src="../components/post_scripts/save_post.js"></script>
 
 
@@ -228,7 +229,7 @@ function formatRelativeTime($timestamp) {
             <hr>
             <div class="post-footer">
               <a href="#" onclick="makeGeekAjaxRequest(event,<?php echo $sid;?>,<?php echo $post['discussion_id'];?>)"> <img src="../img/geek.png" alt="geek"> Geek</a>
-              <a href="#"> <svg xmlns="http://www.w3.org/2000/svg" width="41" height="35" viewBox="0 0 41 35"
+              <a href="#" onclick="toggleComments(event,<?php echo $post['discussion_id']?>)"> <svg xmlns="http://www.w3.org/2000/svg" width="41" height="35" viewBox="0 0 41 35"
                   fill="none">
                   <path
                     d="M31.3066 33.2008C30.7223 33.2008 30.1381 33.0719 29.6103 32.7981L22.0522 28.964C21.2606 28.9479 20.4689 28.8997 19.715 28.803C19.2061 28.7386 18.7726 28.4485 18.5841 28.0296C18.3956 27.6108 18.4899 27.1598 18.8291 26.8215C20.0731 25.5811 20.714 24.099 20.714 22.5203C20.714 18.622 16.6993 15.4485 11.761 15.4485C9.91392 15.4485 8.14218 15.8836 6.65317 16.7212C6.23851 16.9468 5.72961 16.979 5.27725 16.8018C4.84374 16.6246 4.52334 16.27 4.4668 15.8512C4.41025 15.4001 4.37256 14.9492 4.37256 14.4821C4.37256 6.49193 12.4773 0 22.4291 0C32.381 0 40.4857 6.49193 40.4857 14.4821C40.4857 18.8638 38.1108 22.8909 33.9265 25.6455L34.5674 30.0273C34.7182 31.1227 34.1527 32.1537 33.0784 32.7498C32.5506 33.0397 31.9286 33.2008 31.3066 33.2008ZM22.4103 26.5315C22.6742 26.5154 22.9381 26.58 23.1642 26.7089L31.0616 30.72C31.2689 30.8328 31.4386 30.7845 31.5517 30.72C31.6459 30.6717 31.7967 30.5428 31.759 30.3173L31.0239 25.2267C30.9674 24.7756 31.1936 24.3408 31.6082 24.0831C35.4532 21.7795 37.6585 18.2676 37.6585 14.4497C37.6585 7.79673 30.8354 2.38411 22.4291 2.38411C14.3432 2.38411 7.70867 7.4102 7.21861 13.7249C8.63223 13.2578 10.1589 13 11.7422 13C18.2449 13 23.5223 17.2527 23.5223 22.4881C23.5412 23.9057 23.1454 25.275 22.4103 26.5315Z"
@@ -238,6 +239,14 @@ function formatRelativeTime($timestamp) {
                     fill="#828282" />
                 </svg> Comment</a>
             </div>
+            <div id="comments_main_<?php echo $post['discussion_id']?>" class="comment-container">
+                <div class="comments" id="comments_<?php echo $post['discussion_id']?>">
+                </div>
+
+                <textarea class="comment-input" rows="4" placeholder="Add your comment..." id="comment_input_<?php echo $post['discussion_id']?>"></textarea>
+                <button class="comment-button" onclick="postComment(<?php echo $post['discussion_id']?>)">Post Comment</button>
+        
+            </div>
           </div>
           <?php
             }
@@ -245,4 +254,5 @@ function formatRelativeTime($timestamp) {
         </div>
     </div>
 </div>
+
 <script src="../components/posts.js"></script>

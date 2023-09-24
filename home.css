@@ -527,3 +527,61 @@ line-height: normal;
 .saved {
   color:black;
 }
+
+/* Comments */
+.comment-container {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 auto;
+  display: none;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for individual comments */
+.comment {
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f2f2f2;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Style for the comment input field */
+.comment-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px; /* Increase font size */
+  font-family: Arial, sans-serif; /* Specify font family */
+  color: #333; /* Set text color */
+  resize: none; /* Disable resizing */
+}
+
+/* Style for the "Post Comment" button */
+.comment-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for the button */
+.comment-button:hover {
+  background-color: #0056b3;
+}
+
+/* Style for the username */
+.username {
+  font-weight: bold;
+  color: #007BFF;
+}
