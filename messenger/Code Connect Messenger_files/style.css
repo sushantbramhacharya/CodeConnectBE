@@ -58,6 +58,25 @@ body {
     background-color: #4A6BCC;
   }
   /* SCROLL */
+  /* SCROLL for messages */
+  /* Styling for WebKit-based browsers */
+.messages-chat::-webkit-scrollbar {
+  width: 8px;
+}
+
+.messages-chat::-webkit-scrollbar-track {
+  background-color: #e7ebff;
+}
+
+.messages-chat::-webkit-scrollbar-thumb {
+  background-color: #8fa2fc;
+  border-radius: 4px;
+}
+
+.messages-chat::-webkit-scrollbar-thumb:hover {
+  background-color: #4A6BCC;
+}
+/* SCROLL */
   .discussions .discussion {
     width: 100%;
     height: 90px;
@@ -109,8 +128,7 @@ body {
   }
   
   .discussions .message-active {
-    width: 98.5%;
-    height: 90px;
+
     background-color: #FFF;
     border-bottom: solid 1px #E0E0E0;
   }
@@ -140,7 +158,6 @@ body {
   }
   
   .desc-contact {
-    height: 43px;
     width:50%;
     white-space: nowrap;
     overflow: hidden;
@@ -150,7 +167,7 @@ body {
   .discussions .discussion .name {
     margin: 0 0 0 20px;
     font-family:'Montserrat', sans-serif;
-    font-size: 11pt;
+    font-size: 16pt;
     color:#515151;
   }
   
@@ -205,6 +222,8 @@ body {
   
   .chat .messages-chat {
     padding: 25px 35px;
+    height: 58vh;
+    overflow-y: scroll;
   }
   
   .chat .messages-chat .message {
