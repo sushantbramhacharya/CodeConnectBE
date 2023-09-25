@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Profile DashBoard</title>
+    <title>Update CV</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
@@ -19,23 +19,11 @@
                 <span><i class="icon icon-user"></i></span>
             </div>
             <div class="form-group">
-            <h2>Welcome to Profile Dashboard</h2>
-            </div>
-            <p class="warning">* Navigate through Menu.</p>
-            <div class="form-group">
-                <a type="button" href="general_profile.php" class="btn btn-block update-account">Update Basic Account Details</a>
+            <label class="form-label" for="customFile">Choose Photo</label>
+            <input type="file" class="form-control" id="customFile" />
             </div>
             <div class="form-group">
-                <a type="button" href="project-menu.php" class="btn btn-block update-account">Update Projects</a>
-            </div>
-            <div class="form-group">
-                <a type="button" href="certification-menu.php" class="btn btn-block update-account">Update Certification</a>
-            </div>
-            <div class="form-group">
-                <a type="button" href="skill-menu.php" class="btn btn-block update-account">Update Skills</a>
-            </div>
-            <div class="form-group">
-                <a type="button" href="update-cv.php" class="btn btn-block update-account">Update CV</a>
+                <button type="button" class="btn btn-block update-account">Update CV</button>
             </div>
         </form>
     </div>
