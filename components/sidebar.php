@@ -6,6 +6,7 @@ if(isset($_GET["uid"]))
   $user=queryUser($conn,$uid);
 }
 else{
+  $uid=$_SESSION["uid"];
   $user=queryUser($conn,$sid);
 }
 function queryUser($conn,$id)
@@ -17,7 +18,15 @@ function queryUser($conn,$id)
 ?>
 
 <div class="sidebar">
-      <img src="../img/guni.png" alt="guni">
+      <img src="../uploads/<?php 
+      if(file_exists("../uploads/".$uid.".png"))
+      {
+        echo $uid;
+      }
+      else{
+        echo "default";
+      }
+      ?>.png" alt="Profile pic" width="10">
       <div class="inner-sidebar">
         <h1 class="center">
           <?php echo $user['Name'] ?>

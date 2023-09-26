@@ -44,7 +44,6 @@
     width: auto;
  }
  .profile-name ul li p{
-    margin-left: 10px;
     display: inline;
  }
  .profile-name ul li h3{
@@ -78,9 +77,10 @@
    margin-top: 50px;
    margin-right: 50px;
    margin-bottom: 20px;
+   padding-bottom: 30px;
    height: fit-content;
 }
- .projects h3{
+ .projects {
     padding-left: 30px;
  }
  .project-title{
@@ -97,11 +97,11 @@
     display: flex;
     align-items: center;
  }
-.certification h3{
+.certification {
     padding-left: 30px;
 }
 
-.skills h3{
+.skills {
     padding-left: 30px;
 }
  .skill-title{
@@ -126,4 +126,21 @@
 
 .styled-button:hover {
    background-color: #232F66;
+}
+
+
+.inline-button {
+   background-color: #232F66; 
+   color: #fff;
+   border: none; 
+   padding: 10px 20px; 
+   border-radius: 5px; 
+   cursor: pointer; 
+   font-size: 16px; 
+   margin-right: 10px; 
+   text-decoration: none; 
+}
+
+.inline-button:hover {
+   background-color: #2980b9; 
 }

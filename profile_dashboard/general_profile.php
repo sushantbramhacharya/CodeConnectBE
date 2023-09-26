@@ -13,14 +13,14 @@
 
 <body>
     <div class="update-profile">
-        <form>
+        <form action="./profile_server_scripts/general_profile.php" method="POST" enctype="multipart/form-data" >
             
             <div class="form-icon">
                 <span><i class="icon icon-user"></i></span>
             </div>
             <div class="form-group">
-            <label class="form-label" for="customFile">Choose Photo</label>
-            <input type="file" class="form-control" id="customFile" />
+            <label class="form-label" for="customFile" >Choose Photo</label>
+            <input name="photo" type="file"  accept="image/png" class="form-control" id="customFile" />
             </div>
             <div class="form-group">
                 <input type="text" class="form-control item" id="username" name="username" placeholder="Username">
@@ -40,12 +40,11 @@
             </div>
             <p class="warning">* Empty fields wont be updated.</p>
             <div class="form-group">
-                <button type="button" class="btn btn-block update-account">Update Account</button>
+                <button type="submit" class="btn btn-block update-account">Update Account</button>
             </div>
         </form>
     </div>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
-    <script src="assets/js/script.js"></script>
 </body>
 </html>

@@ -121,7 +121,15 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
             <div class="post-header">
               <div class="profile-section">
                 <a href="">
-                  <img src="../img/Profile-Picture.png" alt="Profile Picture">
+                  <img src="../uploads/<?php 
+                      if(file_exists("../uploads/".$poster_uid.".png"))
+                      {
+                        echo $poster_uid;
+                      }
+                      else{
+                        echo "default";
+                      }
+                      ?>.png" alt="Profile Picture">
                 </a>
                 <div class="profile-info-posts">
                   <a href="">

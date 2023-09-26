@@ -10,7 +10,21 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-
+<?php
+session_start();
+require_once("../db_connect.php");
+$uid = $_SESSION["uid"];
+$query="SELECT name,cert_id FROM certifications WHERE uid = $uid LIMIT 5;";
+$result=mysqli_query($conn,$query);
+$certs=array();
+while($row=$result->fetch_assoc())
+{
+    $certs[]=array(
+        "name"=>$row['name'],
+        "cert_id"=>$row['cert_id']
+    );
+}
+?>
 <body>
     <div class="update-profile">
         <form>
@@ -21,20 +35,19 @@
             <div class="form-group">
             </div>
             <p class="warning">*Add Certification</p>
+            <?php
+            foreach($certs as $cert)
+            {
+            ?>
             <div class="form-group">
-                <a type="button" href="add-certification.php" class="btn btn-block update-account">Certificate 1</a>
+                <a type="button" href="manage-certification.php/?cert_id=<?php echo $cert['cert_id'];?>" class="btn btn-block update-account"><?php echo $cert['name'];?></a>
             </div>
+            <?php
+            }
+            ?>
+    
             <div class="form-group">
-                <a type="button" href="add-certification.php" class="btn btn-block update-account">Certificate 2</a>
-            </div>
-            <div class="form-group">
-                <a type="button" href="add-certification.php" class="btn btn-block update-account">Certificate 3</a>
-            </div>
-            <div class="form-group">
-                <a type="button" href="add-certification.php" class="btn btn-block update-account">Certificate 4</a>
-            </div>
-            <div class="form-group">
-                <a type="button" href="add-certification.php" class="btn btn-block update-account">Certificate 5</a>
+                <a type="button" href="add-certification.php" class="btn btn-block update-account">Add Certficate</a>
             </div>
         </form>
     </div>
