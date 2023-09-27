@@ -79,4 +79,6 @@
       </ul>
     </div>
   </nav>
-  <script src="../components/navbar.js"></script>
+  <?php
+  require_once("../components/navbar_js.php");
+  ?>

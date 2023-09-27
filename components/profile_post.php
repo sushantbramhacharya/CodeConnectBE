@@ -15,10 +15,14 @@ if(isset($_POST["description"]))
   exit(header("Location: ../home"));
 }
 $sid=$_SESSION["uid"];
-if(isset($_GET["uid"]))
+if(isset($_GET["uid"])&&!empty($_GET["uid"]))
 {
   $uid=$_GET["uid"];
   $posts=queryPosts($conn,$uid);
+}
+else if(isset($_GET["did"])&&!empty($_GET["did"]))
+{
+  $posts=queryPostsDid($conn,$_GET["did"]);
 }
 else{
   $posts=queryPosts($conn,$sid);
@@ -39,13 +43,31 @@ function queryPosts($conn,$id)
   }
   return $posts;
 }
-
+function queryPostsDid($conn,$id)
+{
+  $query = "SELECT * FROM discussion WHERE discussion_id=$id;";
+  $result = mysqli_query($conn, $query);
+  $posts = array();
+  if ($result == true) {
+      while ($row = $result->fetch_assoc()) {
+  
+          $posts[] = $row;
+      }
+  } else {
+      echo "Something went wrong!<BR>";
+  }
+  return $posts;
+}
 ?>
 <script src="../components/post_scripts/geek.js"></script>
 <script src="../components/connectionRequest.js"></script>
 <div class="posts">
   <!-- Profile Section -->
-  <?php require_once("../components/profile_section.php")?>
+  <?php 
+  if(!(isset($_GET["did"])&&!empty($_GET["did"])))
+  {
+  require_once("../components/profile_section.php");
+  }?>
     <div class="post-header"> <h1>Posts</h1> 
     <?php
 if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
