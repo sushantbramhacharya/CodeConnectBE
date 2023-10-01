@@ -225,7 +225,7 @@ else{
                     repoLink=data[0].repo;
                     target='target="_blank"';
                 }
-                element=`<h1 style="text-align:center;">Skill Name: `+data[0].name+`</h1>`+`<h3 style="text-align:center;"> Skill Description: `+data[0].description+`</h3><br><a class="inline-button" href="`+repoLink+`" `+target+`>Visit Repo</a>`;
+                element=`<h1 style="text-align:center;">Project Name: `+data[0].name+`</h1>`+`<h3 style="text-align:center;"> Project Description: `+data[0].description+`</h3><br><a class="inline-button" href="`+repoLink+`" `+target+`>Visit Repo</a>`;
                 contentDiv.append(element);
             });
         }
