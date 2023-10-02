@@ -144,3 +144,14 @@
 .inline-button:hover {
    background-color: #2980b9; 
 }
+
+@media (max-width:734px)
+{
+   .profile-container {
+   flex-direction: column;
+   }
+   .profile-showcase
+   {
+      margin: 50px;
+   }
+}

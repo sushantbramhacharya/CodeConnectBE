@@ -5,11 +5,11 @@ body {
   }
   .header-text{
     text-align: center;
-    padding: 30px;
+
     margin: 0;
     color: white;
     font-size: 20px;
-    background:linear-gradient(180deg, #0E1C58 0%, rgba(1, 14, 80, 0.78) 100%); ;
+
   }
   .header-text a{
     text-decoration: none;
@@ -346,4 +346,32 @@ body {
   
   .clickable {
     cursor: pointer;
+  }
+
+  .nav{
+    display: flex;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(180deg, #0E1C58 0%, rgba(1, 14, 80, 0.78) 100%);
+  }
+  .nav i{
+    display: none;
+    color: white;
+
+  }
+  @media (max-width: 737px) {
+    .discussions {
+      display: none;
+      width: 100%;
+    }
+    .chat, .footer-chat {
+      width: 100%;
+    }
+    .nav i{
+      display: block;
+    }
+    .desc-contact {
+       width: 100%;
+    }
   }

@@ -18,7 +18,7 @@
             <h1 style="color:blue;text-align:center;">Successfully Updated</h1>
         </div>
         <div class="form-group">
-            <a class="btn btn-block update-account" href="http://localhost/codeconnect/index.php">Go Home</a>
+            <a class="btn btn-block update-account" href="../../home">Go Home</a>
         </div>
         </form>
     </div>

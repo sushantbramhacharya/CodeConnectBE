@@ -129,7 +129,7 @@ function formatRelativeTime($timestamp) {
               style="font-size:15px; 
               text-decoration: none;
               color:blue;" 
-              href="http://localhost/codeconnect/home/?friendsOnly=true"
+              href="../home/?friendsOnly=true"
               >Friends Only</a>';
     }
     else{
@@ -137,7 +137,7 @@ function formatRelativeTime($timestamp) {
               style="font-size:15px; 
               text-decoration: none;
               color:blue;" 
-              href="http://localhost/codeconnect/home/"
+              href="../home/"
               >Public</a>';
     }
     ?>    

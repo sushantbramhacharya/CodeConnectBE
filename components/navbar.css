@@ -46,6 +46,7 @@
   
   /* Firefox */
   #notification-dropdown {
+    z-index: 1;
     scrollbar-width: thin;
   }
   

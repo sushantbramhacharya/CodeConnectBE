@@ -57,6 +57,13 @@ function fetchMessage(uid)
 function displayMessage(data)
 {
     let messageElem;
+    let width=$(window).width();
+    if(width<=747)
+    {
+        $(".discussions").fadeOut(0);
+        $(".chat").fadeIn(1000);
+        trigger=false;
+    }
     if(data.sender=="me")
     {
         messageElem=`<div class="message ">
@@ -96,6 +103,27 @@ function sendMessage()
                 console.log(error);
             });
               
+    }
+    
+}
+
+
+
+
+let trigger=false;
+//Styles
+function triggerMenu()
+{
+    if(!trigger)
+    {
+        $(".chat").fadeOut(0);
+        $(".discussions").fadeIn(800);
+        trigger=true;
+    }
+    else{
+        $(".discussions").fadeOut(0);
+        $(".chat").fadeIn(800);
+        trigger=false;
     }
     
 }
