@@ -1,7 +1,7 @@
 <?php
+session_start();
 require_once("../../db_connect.php");
 
-session_start();
 if (isset($_SESSION["uid"]) && isset($_POST["discussion_id"])&&isset($_POST["check_saved"]))
 {
     $uid = $_SESSION["uid"];

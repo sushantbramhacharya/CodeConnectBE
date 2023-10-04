@@ -1,9 +1,9 @@
 <?php
-ob_start();
 session_start();
+ob_start();
 if(!isset($_SESSION["uid"]))
 {
-    header("Location: ../login/");
+  echo "<script>window.location.href = 'login/'</script>;";
     exit();
 }
 

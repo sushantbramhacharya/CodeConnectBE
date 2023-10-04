@@ -1,8 +1,8 @@
 <?php
+header("Access-Control-Allow-Credentials: true");
 
 require_once("cors.php");
 require_once("db_connect.php");
-header("Access-Control-Allow-Credentials: true");
 
 // Respond to the preflight request with a 200 OK status code
 if ($_SERVER["REQUEST_METHOD"] === "OPTIONS") {
@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
   $email = $data["email"];
   $password = $data["password"];
 
-  $sql = "SELECT * FROM User Where Email='$email';";
+  $sql = "SELECT * FROM user Where Email='$email';";
     $result=mysqli_query($conn,$sql);
     if($user=mysqli_fetch_assoc($result))
     {
@@ -40,11 +40,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 //     "message" => "Data received and processed successfully.",
 //   );
 
-  header("Content-Type: application/json");
 //   echo json_encode(array($email,$password));
 
 } else {
-  header("HTTP/1.1 405 Method Not Allowed");
   echo "Invalid request method.";
 }
 ?>

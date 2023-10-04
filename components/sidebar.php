@@ -11,7 +11,7 @@ else{
 }
 function queryUser($conn,$id)
 {
-  $query = "SELECT * FROM User Where uid ='$id';";
+  $query = "SELECT * FROM user Where uid ='$id';";
   $result=mysqli_query($conn,$query);
   return mysqli_fetch_assoc($result);
 }

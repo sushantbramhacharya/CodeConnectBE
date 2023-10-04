@@ -12,7 +12,8 @@ if(isset($_POST["description"]))
   $post_query = "INSERT INTO discussion (uid,post_description,code_text,posted_date)
   VALUES ($uid, '$description', '$post_code_send',".time().");";
   mysqli_query($conn, $post_query);
-  exit(header("Location: ../home"));
+  echo "<script>window.location.href = '../home'</script>;";
+  exit();
 }
 $sid=$_SESSION["uid"];
 if(isset($_GET["uid"])&&!empty($_GET["uid"]))
@@ -68,7 +69,7 @@ function queryPostsDid($conn,$id)
   {
   require_once("../components/profile_section.php");
   }?>
-    <div class="post-header"> <h1>Posts</h1> 
+    <div class="post-header"> <h1>Discussions</h1> 
     <?php
 if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
 {
@@ -114,7 +115,7 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
                   box-sizing: border-box;
                   color:white;
                   font-family: Poppins;
-                  ">Create a Post</h3>
+                  ">Create a Discussion</h3>
       <textarea id="postContent" name="description" placeholder="Write your post here..."></textarea>
       <textarea id="postContent" name="code" placeholder="Write your code here if you want..."></textarea>
       <button id="submitPostBtn" type="submit" >Submit</button>

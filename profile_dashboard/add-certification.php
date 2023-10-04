@@ -1,5 +1,8 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
-<!-- saved from url=(0066)http://localhost/codeconnect/profile_dashboard/general_profile.php -->
+
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,7 +13,7 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <?php
-    session_start();
+    
     require_once("../db_connect.php");
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Check if a file was uploaded without errors

@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION["uid"]))
 {
-    header("Location: ../../login/");
+    echo "<script>window.location.href = '../../login/'</script>;";
     exit();
 }
 
@@ -65,7 +65,7 @@ else if(isset($_POST['discussion_id'])&&$_POST['geeking']==="false")
     echo json_encode($geeker_of_discussion_name);
 }
 else{
-    header("Location: ../../login/");
+    echo "<script>window.location.href = '../../login/'</script>;";
     exit();
 }
 

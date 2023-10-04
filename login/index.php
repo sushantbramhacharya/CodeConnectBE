@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,25 +22,20 @@
             <form class="login-form" action="index.php" method="POST">
                 <img class="logo mbl-logo" src="../img/logo.png" alt="logo">
                 <?php
-                header("Access-Control-Allow-Origin: *");
-                header("Access-Control-Allow-Methods: GET, POST, OPTIONS"); // Specify allowed HTTP methods
-                header("Access-Control-Allow-Headers: Content-Type"); // Specify allowed headers
-                
                     require_once("../session_auth.php");
                     require_once("../db_connect.php");
                     if(isset($_POST ['email'])&& isset($_POST['password']))
                     {
                         $email=mysqli_real_escape_string($conn,$_POST['email']);
                         $password=mysqli_real_escape_string($conn,$_POST['password']);
-                        $sql = "SELECT * FROM User Where Email='$email';";
+                        $sql = "SELECT * FROM user Where Email='$email';";
                             $result=mysqli_query($conn,$sql);
                             if($user=mysqli_fetch_assoc($result))
                             {
                                 if(password_verify($password,$user['password']))
                                 {
-                                    session_start();
                                     $_SESSION["uid"]=$user['uid'];
-                                    header("Location: ../home");
+                                     echo "<script>window.location.href = '../home'</script>;";
                                 }
                                 else
                                 {

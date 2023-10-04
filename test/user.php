@@ -3,7 +3,7 @@ require_once("cors.php");
 require_once("db_connect.php");
 
 $user_id = 1;
-$sql = "SELECT * FROM User WHERE uid = $user_id";
+$sql = "SELECT * FROM user WHERE uid = $user_id";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

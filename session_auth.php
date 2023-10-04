@@ -1,8 +1,8 @@
 <?php
-session_start();
 if(isset($_SESSION["uid"]))
 {
-    header("Location: ../home/");
+    echo "<script>window.location.href = '../home/'</script>;";
+
     exit();
 }
 ?>

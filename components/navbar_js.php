@@ -136,7 +136,7 @@ let profileSearch=true;
 function searchPost(event)
 {
   keyword=$('#search-input').val();
-  $(event.target).attr('href', 'http://localhost/codeconnect/home/?codeSearchKeyword='+keyword);
+  $(event.target).attr('href', '../home/?codeSearchKeyword='+keyword);
 }
 
 $(document).ready(function () {
@@ -181,14 +181,14 @@ $(document).ready(function () {
         searchDropdown.append(option);
         //Post Search Code
       });
-      const postSearch=$('<a>').attr({onClick: 'searchPost(event)',href:''}).addClass('dropdown-option search-post').text("Search Post");
+      const postSearch=$('<a>').attr({onClick: 'searchPost(event)',href:''}).addClass('dropdown-option search-post').text("Search Discussion");
       searchDropdown.append(postSearch);
     } else {
       const noResults = $('<div>').addClass('no-results').text('No results found');
       searchDropdown.append(noResults);
 
       //Post Search Code
-      const postSearch=$('<a>').attr({onClick: 'searchPost(event)',href:''}).addClass('dropdown-option search-post').text("Search Post");
+      const postSearch=$('<a>').attr({onClick: 'searchPost(event)',href:''}).addClass('dropdown-option search-post').text("Search Discussion");
       searchDropdown.append(postSearch);
     }
   }

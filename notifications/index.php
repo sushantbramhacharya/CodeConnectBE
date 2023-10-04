@@ -2,7 +2,7 @@
 session_start();
 if(!isset($_SESSION["uid"]))
 {
-    header("Location: ../login/");
+  echo "<script>window.location.href = '../login/'</script>;";
     exit();
 }
 

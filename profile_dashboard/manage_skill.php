@@ -1,3 +1,5 @@
+<?php
+session_start();?>
 <!DOCTYPE html>
 
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,7 +12,6 @@
     <link rel="stylesheet" href="../style.css">
 </head>
 <?php
-session_start();
 require_once("../db_connect.php");
 if(!empty($_POST['skill-name'])&&isset($_SESSION))
 {

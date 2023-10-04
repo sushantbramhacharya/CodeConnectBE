@@ -13,10 +13,11 @@ if(isset($_POST["description"]))
   $post_query = "INSERT INTO discussion (uid,post_description,code_text,posted_date)
   VALUES ($uid, '$description', '$post_code_send',".time().");";
   mysqli_query($conn, $post_query);
-  exit(header("Location: ../home"));
+  echo "<script>window.location.href = '../home'</script>;";
+  exit();
 }
 $sid=$_SESSION["uid"];
-$query = "SELECT Name FROM User Where uid ='$sid';";
+$query = "SELECT Name FROM user Where uid ='$sid';";
 $result=mysqli_query($conn,$query);
 $user=mysqli_fetch_assoc($result);
 
@@ -121,7 +122,7 @@ function formatRelativeTime($timestamp) {
 ?>
 <script src="../components/post_scripts/geek.js"></script>
 <div class="posts">
-    <div class="post-header"> <h1>Posts 
+    <div class="post-header"> <h1>Discussions 
     <?php
     if(!isset($_GET["friendsOnly"]))
     {
@@ -153,7 +154,7 @@ function formatRelativeTime($timestamp) {
                   box-sizing: border-box;
                   color:white;
                   font-family: Poppins;
-                  ">Create a Post</h3>
+                  ">Create a Discussion</h3>
       <textarea id="postContent" name="description" placeholder="Write your post here..."></textarea>
       <textarea id="postContent" name="code" placeholder="Write your code here if you want..."></textarea>
       <button id="submitPostBtn" type="submit" >Submit</button>

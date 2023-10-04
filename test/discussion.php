@@ -2,7 +2,7 @@
 require_once("cors.php");
 require_once("db_connect.php");
 
-$sql = "SELECT * FROM Discussion ";
+$sql = "SELECT * FROM discussion ";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {

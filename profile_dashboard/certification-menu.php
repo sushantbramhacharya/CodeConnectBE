@@ -1,5 +1,7 @@
+<?php
+session_start();?>
 <!DOCTYPE html>
-<!-- saved from url=(0047)http://localhost/codeconnect/profile_dashboard/ -->
+
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,7 +13,7 @@
 </head>
 
 <?php
-session_start();
+
 require_once("../db_connect.php");
 $uid = $_SESSION["uid"];
 $query="SELECT name,cert_id FROM certifications WHERE uid = $uid LIMIT 5;";

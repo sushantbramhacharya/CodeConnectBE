@@ -30,11 +30,11 @@
                             $u_password=mysqli_real_escape_string($conn,$_POST["password"]);
                             $hashed_password=password_hash($u_password, PASSWORD_DEFAULT);
                             if(strlen($u_password)>=8 && strlen($u_password)<=10 ){
-                                $query="INSERT INTO User (Name, password, Email)
+                                $query="INSERT INTO user (Name, password, Email)
                                 VALUES('$u_name', '$hashed_password', '$u_email');";
                                 try {
                                     if (mysqli_query($conn, $query)) {
-                                        header("Location: ../login");
+                                        echo "<script>window.location.href = '../login'</script>;";
                                     } else {
                                         echo "Error: " . mysqli_error($conn);
                                     }

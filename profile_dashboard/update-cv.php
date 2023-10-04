@@ -1,3 +1,5 @@
+<?php
+session_start();?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +12,6 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <?php
-session_start();
 require_once("../db_connect.php");
 if(isset($_SESSION))
 {

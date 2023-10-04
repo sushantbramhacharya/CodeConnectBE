@@ -3,10 +3,10 @@
 session_start();
 if(isset($_SESSION["uid"]))
 {
-    header("Location: home/");
+    echo "<script>window.location.href = 'home/'</script>;";
 }
 else{
-    header("Location: login/");
+    echo "<script>window.location.href = 'login/'</script>;";
 }
 exit();
 
