@@ -222,7 +222,7 @@ body {
   
   .chat .messages-chat {
     padding: 25px 35px;
-    height: 58vh;
+    height: 55vh;
     overflow-y: scroll;
   }
   

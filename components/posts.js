@@ -36,6 +36,8 @@ if(!comments_toggled)
     dataType: "json", 
     success: function(data) {
       data.forEach(data => {
+        $("#comment_input_"+discussion_id).val("");
+      $("#comments_"+discussion_id).html("");
         let commentElem;
         if(data.commenter_name==userName)
         {
@@ -48,7 +50,7 @@ if(!comments_toggled)
           `
         }else{
           commentElem=`<div class="comment" ><p><span class='username'>${data.commenter_name}</span> <span>${data.comment}</span></p></div>
-          `
+          `;
         }
       
       $("#comments_"+discussion_id).append(commentElem);

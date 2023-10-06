@@ -18,17 +18,21 @@ else{
                         <h3>Location:</h3>
                         <p><?php echo $user['Address'] ?></p>  
                     </li>
+                    <br>
                     <li>
                         <h3>Email:</h3>
                         <a href=""><?php echo $user['Email'] ?></a>
                     </li>
+                    <br>
                     <li>
                         <h3>Github Link:</h3>
+                        
                         <a href="<?php echo $user['github_link'] ?>" style="color:blue;">Click Here</a>
                     </li>                
                 </ul>
                 
             </div>
+
             <div class="bio-section">
                 <h3>Bio:</h3>
                 <p><?php echo $user['bio'] ?> </p>
