@@ -51,7 +51,7 @@ session_start();
                 <label for="email">Email</label>
                 <input class="inputs" type="email" name="email" placeholder="Enter Your Email" id="email">
                 <label for="password">
-                    Password <a class="link" href="">Forgot?</a>
+                    Password 
                 </label>
                 <div class="inputs">
                     <input type="password" name="password" placeholder="Enter Your Password" id="password"><svg
