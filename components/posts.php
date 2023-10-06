@@ -230,7 +230,7 @@ function formatRelativeTime($timestamp) {
               </p>
               <?php if($post_code){?>
 
-               <pre class="code" ><?php echo $post_code?></pre>
+               <pre class="code" ><?php echo htmlspecialchars($post_code, ENT_QUOTES, 'UTF-8');?></pre>
 
               <?php };?>
             </div>

@@ -196,7 +196,7 @@ if(!isset($_GET["uid"])||$_GET["uid"]===$sid)
               <?php echo $post_description?>
               </p>
               <?php if($post_code){?>
-              <pre class="code"><?php echo $post_code?></pre>
+              <pre class="code"><?php echo htmlspecialchars($post_code, ENT_QUOTES, 'UTF-8');?></pre>
               <?php };?>
             </div>
             <p class="geeked" id="<?php echo $post['discussion_id']?>">Geeked By</p>
